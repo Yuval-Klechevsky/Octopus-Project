@@ -1,0 +1,44 @@
+version: '3.8'
+services: 
+  node-web:
+    build: 
+      context: .
+      dockerfile: nodeJS.dockerfile
+    container_name: node-web
+    depends_on: 
+      - mongo
+    links:
+      - mongo
+    networks:
+      - apples-network
+
+  mongo:
+    image: mongo:4.2
+    restart: always
+    env_file: ./.env 
+    container_name: mongo
+    environment: 
+      - MONGO_INITDB_DATABASE=$MONGODB_DATABASE
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+      - node-mongo-data:/data/db 
+    networks:
+      - apples-network
+  
+  nginx:
+    build: 
+      context: .
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - node-web
+    networks:
+      - apples-network
+  
+volumes: 
+  node-mongo-data: 
+
+networks:
+  apples-network:
