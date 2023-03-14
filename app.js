@@ -1,8 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app= express();
+const prometheus = require('prom-client');
+prometheus.collectDefaultMetrics();
+
+
 
 const url = ('mongodb://mongo:27017/fruitsDB');
+
+const counter = new prometheus.Counter({
+    name: 'node_request_operations_total',
+    help: 'The total number of processed requests'
+});
+  
 
 // Connect to mongoDB with mongoose
 
@@ -44,7 +54,13 @@ fruit.findOne({ name: 'apples' })
       const qty = result.qty;
       res.status(200).json(qty);
     });
+    counter.inc();
 });
+
+app.get('/metrics', (req, res) => {
+    res.set('Content-Type', prometheus.register.contentType);
+    res.end(prometheus.register.metrics());
+})
 
 app.listen(8081,()=>{
     console.log("Server is running at port 8081")
