@@ -19,3 +19,12 @@ That is, the way the web server communicates in and out with the client
 The only exit of the Internet is through port 80 only and the use of Nginx is for the purpose of increasing the level of security and hiding the architecture from the client, for whom it is conducted against only one server.
 
 ![img](MachineA.png) ![img](MachineB.png) 
+
+As you can see in the two pictures we have a different number of apples, this is for the demonstration of using a Load Balancer without changing the address during use.
+
+> So what is a Load Balancer?
+
+Load balancing directs and controls internet traffic between the application servers and their visitors or clients.
+
+So the advantage of using a Load Balancer for the client is that even if one server does not respond to the user while browsing the site,
+The user will not feel this since the Load Balancer directs the request to another server.
