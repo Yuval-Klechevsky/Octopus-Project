@@ -17,3 +17,5 @@ The user sends a request to our network that goes through the web server (Nginx)
 That is, the way the web server communicates in and out with the client
 
 The only exit of the Internet is through port 80 only and the use of Nginx is for the purpose of increasing the level of security and hiding the architecture from the client, for whom it is conducted against only one server.
+
+![img](MachineA.png) ![img](MachineB.png) 
