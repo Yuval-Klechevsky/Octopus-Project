@@ -20,6 +20,8 @@ The only exit of the Internet is through port 80 only and the use of Nginx is fo
 
 ![img](MachineA.png) ![img](MachineB.png) 
 
+
+
 As you can see in the two pictures we have a different number of apples, this is for the demonstration of using a Load Balancer without changing the address during use.
 
 > So what is a Load Balancer?
